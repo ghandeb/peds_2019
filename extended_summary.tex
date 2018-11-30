@@ -46,41 +46,108 @@ With the developments in safety-critical industrial applications, fault toleranc
 \section{\normalsize\textbf{Design Specifications of IMMD System}}
 IMMD structure proposes placing the electric machine and power electronics into a single housing especially for higher power density and compactness considerations \cite{immd-bible}. There are several types for this integration \cite{difftopology1}\cite{difftopology2}. In this study, power converter and control circuits are placed on the stator back iron \cite{mesutto}. \\
 For the machine topology, fractional slot concentrated winding (FSCW) permanent magnet synchronous motor (PMSM) is more suitable due to high power density and high efficiency advantages. Furthermore, complete (electric and physical) isolation of phases and achieving higher number of phases in FSCW increases the fault tolerance capability of the machine \cite{fscw}. Besides, aforementioned integration configuration of drive unit onto the FSCW machine provides modularity for both machine and driver side, which brings redundant operation opportunity. (...)
- 
-\section{\normalsize\textbf{Three, Four and Six-Phase Winding Configurations}}
-\begin{figure}[ht!]
-    \centering
-    \includegraphics{windings.png}
-    \caption{Winding Diagrams: (a) Three-Phase Four Modules (b) Four-Phase Two Modules (c)Symmetric Six-Phase Two Modules (d) Asymmetric Six-Phase Two Modules  }
-    \label{fig:winding}
-\end{figure}
 
-\begin{comment}
 \begin{table*}[ht!]
- \caption{Distribution Factors of Different Topologies for nth Harmonic Order }
+\centering
+ \caption{Design Specifications of IMMD}
 \label{kd}
-\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
+\begin{tabularx}{0.5\textwidth}{@{}l*{10}{C}c@{}}
+
 \toprule
-Topology/Harmonic Order      & 1st  & 3rd & 5th & 7th & 9th & 11th & 13th \\ 
+Specification  &  Value \\ 
 \midrule
-3-Phase    & 915    & 4    & 17   & 19  & 3    & 1   & 0\%  \\ 
-4-Phase    & 8      & 934  & 3    & 4   & 0    & 0   & 3\%  \\ 
-Symmetric 6-Phase  & 60    & 1  & 813  & 37  & 19   & 23  & 30\%  \\ 
-Asymmetric 6-Phase  & 18  & 1   & 34   & 746 & 25   & 113 & 37\%  \\
+Rated Output Power & 8 kW \\ 
+Speed & 600 rpm \\ 
+Number of Slots ($Q_s$) & 24 \\
+Number of Poles (2p) & 20 \\
+Stator Outer Diameter & 270 mm \\
+Stack Length & 135 mm \\
+Inverter Input Voltage (Per Module) & 270 Vdc \\
 
 \bottomrule
 \end{tabularx}
 \end{table*}
-\end{comment}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics{windings.png}
+    \caption{8 kW IMMD System: (a) 24 Slot Stator (b) Heatsink and Driver of a Module (c) Cross-sectional View of Overall System}
+    \label{fig:immd}
+\end{figure}
+
+\section{\normalsize\textbf{Three, Four and Six-Phase Winding Configurations}}
+In a single phase fault condition, a three-phase machine is unable to operate as the machine cannot produce rotating MMF. For that reason, three-phase machines with a redundant phase leg or multiphase machines are more suitable for fault tolerant applications. %\cite{kaynak ver reis}
+In this section, different configuration possibilities are to be evaluated. As the stator slot number ($Q_s$) is 24, three, four and six phase topologies are suitable to compare.\\
+% Geliştir buraları, şimdilik madde madde
+Four phase has high number of harmonics and has very poor winding factor.\\
+Symmetric six phase and three phase has suitable winding factor and lower mmf harmonics.
+Asymmetric six phase nearly eliminates all sub-harmonics, but due to its winding configuration, one of the phase inductances is expected to be lower than the others.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics{windings.png}
+    \caption{Winding Diagrams: (a) Three-Phase Four Modules (b) Four-Phase Two Modules (c) Symmetric Six-Phase Two Modules (d) Asymmetric Six-Phase Two Modules  }
+    \label{fig:winding}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{subfigure}[b]{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{mmf_harm_4ph.png}
+    \caption{Four-Phase}
+    \label{fig:4phmmf}    
+\end{subfigure}
+\begin{subfigure}[b]{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{mmf_harm_sym.png}
+    \caption{Symmetric Six-Phase}
+    \label{fig:s6phmmf}    
+\end{subfigure}
+\begin{subfigure}[b]{0.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{mmf_harm_asym.png}
+    \caption{Asymmetric Six-Phase}
+    \label{fig:as6phmmf}    
+\end{subfigure}
+ \caption{MMF Harmonic Spectrums}
+\end{figure}
+
 
 \section{\normalsize\textbf{Comparison of Different Topologies}}
+\subsection{\normalsize\textbf{Redundancy}}
+As aforementioned in the previous section, a three-phase machine is unable to operate properly under an OCF condition, as two phases cannot produce a rotating MMF.Yet, multiphase machines and machines with redundant phase legs may still maintain proper operation with certain manipulations. Accordingly, for the three-phase four module topology, OC failure of a single phase results in turning off one module completely. In this case, output power is decreased by 25\%. Although symmetric six-phase topology has the same magnetic equivalent circuit with three-phase four module, neutral node connection between two modules in this topology provides multiphase operation opportunity and as a result, completely turning off one module is not necessary. Similar advantages are also applicable for four-phase and asymmetric six-phase cases. On the other hand, decreasing the module number by half brings out other drawbacks. In a controller fault situation, which affects one module of the driver, decreases the motor output power to half, where it only decreases a quarter in initially proposed three-phase four module IMMD structure.
+
+\subsection{\normalsize\textbf{Torque Ripple}}
+
+\subsection{\normalsize\textbf{Open Circuit Failure (OCF) Responses and Recovery}}
+
+\subsection{\normalsize\textbf{Overall Comparison}}
+Torque ripple
+eff?
+??
+Fault tolerance
 Redundancy yüzdesi, normal operation, one phase open fault durumunda olacaklar, ilk IMMD topolojisiyle kıyaslanması, fault durumunda akımların, torque ripple ve average torque'un değişimi belirtilip karşılaştırılacak. Tablolanabilir. Akım vs gibi şeylerin simülasyonu genel olarak Simulink üzerinden yürüyecek. Tork için FEA karşılaştırması da eklenecek. Fault durumunda düzgün operate ettirmek için faz açısı kaydırma mevzularına girilecek. Genel olarak karşılaştırma bu değşik modül ve faz sayılı topolojilerin redundancy karşılaştırması üzerinden yürüyecek. 
 
+\begin{table*}[ht!]
+ \caption{Comparison of Different Topologies}
+\label{kd}
+\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
+\toprule
+Advantages      & Three-Phase  & Four-Phase & Symmetric Six-Phase & Asymmetric Six-Phase \\ 
+\midrule
+Redundancy Factor    & lol    & lol    & lol   & lol \\ 
+Overcurrent in OCF   & xd      & xd  & xd    & xd \\ 
+Inductance Balance  &  asd &   asd&    asd&  asd\\
+Torque Ripple  & menemene  & soğanları   & doğradım   & evet  \\
+MMF Harmonics  & medium    & high  & medium  & low  \\ 
+Interleaving Opportunity  & evet  & şöyle   & şarkımızı   & söyleyelim  \\
+
+
+\bottomrule
+\end{tabularx}
+\end{table*}
 \section{\normalsize\textbf{Conclusions}}
 Toparlama. Ne yapmıştık bugün. Ne kattık biz bu çalışmayla. Experimental sonuç verecek miyiz full paperda, neleri ekleriz full papera onları yazarız.
-
-\section{\normalsize\textbf{Future Work for Full Paper Submission}}
-Bunu da ayrı başlık olarak yazalım mı? Yoksa conclusionda mı yazalım?
 
 \AtNextBibliography{\tiny}
 \printbibliography
