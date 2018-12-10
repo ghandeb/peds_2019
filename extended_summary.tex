@@ -51,18 +51,15 @@ For the machine topology, fractional slot concentrated winding (FSCW) permanent 
 \centering
  \caption{Design Specifications of IMMD}
 \label{kd}
-\begin{tabularx}{0.5\textwidth}{@{}l*{10}{C}c@{}}
+\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
 
 \toprule
-Specification  &  Value \\ 
+Specification  &  Value & Specification  &  Value \\ 
 \midrule
-Rated Output Power & 8 kW \\ 
-Speed & 600 rpm \\ 
-Number of Slots ($Q_s$) & 24 \\
-Number of Poles (2p) & 20 \\
-Stator Outer Diameter & 270 mm \\
-Stack Length & 135 mm \\
-Inverter Input Voltage (Per Module) & 270 Vdc \\
+Rated Output Power & 8 kW & Speed & 600 rpm\\ 
+Number of Slots ($Q_s$) & 24 & Pole Number (2p) & 20 \\
+Stator Outer Diameter & 270 mm & Stack Length & 135 mm \\
+DC Bus Voltage (Per Module) & 270 Vdc & & \\
 
 \bottomrule
 \end{tabularx}
@@ -76,7 +73,7 @@ Inverter Input Voltage (Per Module) & 270 Vdc \\
 \end{figure}
 
 \section{\normalsize\textbf{Three, Four and Six-Phase Winding Configurations}}
-In a single phase fault condition, a three-phase machine is unable to operate as the machine cannot produce rotating MMF. For that reason, three-phase machines with a redundant phase leg or multiphase machines are more suitable for fault tolerant applications. %\cite{kaynak ver reis}
+In a single phase fault condition, a three-phase machine is unable to operate as the machine cannot produce rotating MMF. For that reason, three-phase machines with a redundant phase leg or multiphase machines are more suitable for fault tolerant applications. \cite{phaseleg}
 In this section, different configuration possibilities are to be evaluated. As the stator slot number ($Q_s$) is 24, three, four and six phase topologies are suitable to compare.\\
 % Geliştir buraları, şimdilik madde madde
 Four phase has high number of harmonics and has very poor winding factor.\\
@@ -118,10 +115,17 @@ Asymmetric six phase nearly eliminates all sub-harmonics, but due to its winding
 As aforementioned in the previous section, a three-phase machine is unable to operate properly under an OCF condition, as two phases cannot produce a rotating MMF.Yet, multiphase machines and machines with redundant phase legs may still maintain proper operation with certain manipulations. Accordingly, for the three-phase four module topology, OC failure of a single phase results in turning off one module completely. In this case, output power is decreased by 25\%. Although symmetric six-phase topology has the same magnetic equivalent circuit with three-phase four module, neutral node connection between two modules in this topology provides multiphase operation opportunity and as a result, completely turning off one module is not necessary. Similar advantages are also applicable for four-phase and asymmetric six-phase cases. On the other hand, decreasing the module number by half brings out other drawbacks. In a controller fault situation, which affects one module of the driver, decreases the motor output power to half, where it only decreases a quarter in initially proposed three-phase four module IMMD structure.
 
 \subsection{\normalsize\textbf{Torque Ripple}}
-
+asd
 \subsection{\normalsize\textbf{Open Circuit Failure (OCF) Responses and Recovery}}
+asd
+\begin{figure}[ht!]
+    \centering
+    \includegraphics{windings.png}
+    \caption{Open Circuit Failure Responses of Different Topologies: (a)}
+    \label{fig:ocfresponse}
+\end{figure}
 
-\subsection{\normalsize\textbf{Overall Comparison}}
+\section{\normalsize\textbf{Conclusions and Future Work}}
 Torque ripple
 eff?
 ??
@@ -146,8 +150,6 @@ Interleaving Opportunity  & evet  & şöyle   & şarkımızı   & söyleyelim  \
 \bottomrule
 \end{tabularx}
 \end{table*}
-\section{\normalsize\textbf{Conclusions}}
-Toparlama. Ne yapmıştık bugün. Ne kattık biz bu çalışmayla. Experimental sonuç verecek miyiz full paperda, neleri ekleriz full papera onları yazarız.
 
 \AtNextBibliography{\tiny}
 \printbibliography
