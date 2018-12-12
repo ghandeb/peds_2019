@@ -39,14 +39,14 @@
 \vspace{-23mm}
 
 \textit{\normalsize\textbf{Abstract:}}
-\textit{Integrated Modular Motor Drive (IMMD) is the concept of integrating power electronics, electric motor and other passive components of a drive to obtain a more compact system compared to conventional motor drives. In this study, fault tolerance and redundancy capabilities of different phase and winding configurations of an IMMD system is investigated. This is possible by manipulating gate drive signals of the inverter and end winding connections, without making any changes on the stator side of the electric machine. Three, four, symmetric and asymmetric six-phase topologies are described. Control strategies and redundancy possibilities of these different topologies under an open circuit fault condition are examined in MATLAB/Simulink environment and validated with Finite Element Analysis (FEA) software ANSYS/Maxwell. }
+\textit{In this study, fault tolerance and redundancy capabilities of different phase and winding configurations of an Integrated Modular Motor Drive (IMMD) system is investigated. This is possible by manipulating gate drive signals of the inverter and end winding connections, without making any changes on the stator side of the electric machine. Three, four, symmetric and asymmetric six-phase topologies are described. Control strategies and redundancy possibilities of these different topologies under an open circuit fault condition are examined in MATLAB/Simulink environment and validated with Finite Element Analysis (FEA) software ANSYS/Maxwell. }
 
 \section{\normalsize\textbf{Introduction}}
-With the developments in safety-critical industrial applications, fault tolerance, reliability and redundancy of electric motor drive systems have become more important. As described explicitly in \cite{bible}, fault tolerance of a drive is basically the drive's ability of maintaining its operation within the boundaries, in a possible failure occurance. This study proposes 
+Integrated Modular Motor Drive (IMMD) is the concept of integrating power electronics, electric motor and other passive components of a drive to obtain a more compact system with higher power density compared to conventional motor drives \cite{immd-bible}. With the developments in safety-critical industrial applications, where IMMD concept would be quite related concerning efficiency and compactness, fault tolerance, reliability and redundancy of electric motor drive systems have become more important. This study examines assets and disadvantages of different phase configurations of the machine of an IMMD system, by means of redundancy and fault tolerance. 
 
 \section{\normalsize\textbf{Design Specifications of IMMD System}}
-IMMD structure proposes placing the electric machine and power electronics into a single housing especially for higher power density and compactness considerations \cite{immd-bible}. There are several types for this integration \cite{difftopology1}\cite{difftopology2}. In this study, power converter and control circuits are placed on the stator back iron \cite{mesutto}. \\
-For the machine topology, fractional slot concentrated winding (FSCW) permanent magnet synchronous motor (PMSM) is more suitable due to high power density and high efficiency advantages. Furthermore, complete (electric and physical) isolation of phases and achieving higher number of phases in FSCW increases the fault tolerance capability of the machine \cite{fscw}. Besides, aforementioned integration configuration of drive unit onto the FSCW machine provides modularity for both machine and driver side, which brings redundant operation opportunity. Main design specifications of the machine is given in Table \ref{specs}.
+There are several types for this integration \cite{difftopology1}\cite{difftopology2}. In this study, power converter and control circuits are placed on the stator back iron \cite{mesutto}. \par
+For the machine topology, fractional slot concentrated winding (FSCW) permanent magnet synchronous motor (PMSM) is more suitable due to high power density and high efficiency advantages. Furthermore, complete (electric and physical) isolation of phases and achieving higher number of phases in FSCW increases the fault tolerance capability of the machine \cite{fscw}. Besides, aforementioned integration configuration of drive unit onto the FSCW machine provides modularity for both machine and driver side, which brings redundant operation opportunity. In Figure \ref{fig:8kw}, one module of the driver, stator laminations and designed final product are presented. Main design specifications of the machine is given in Table \ref{specs}.
 
 \begin{table*}[ht!]
 \centering
@@ -57,7 +57,7 @@ For the machine topology, fractional slot concentrated winding (FSCW) permanent 
 \toprule
 Specification  &  Value & Specification  &  Value \\ 
 \midrule
-Rated Output Power & 8 kW & Speed & 600 rpm\\ 
+Rated Output Power & 8.5 kW & Speed & 600 rpm\\ 
 Number of Slots ($Q_s$) & 24 & Pole Number (2p) & 20 \\
 Stator Outer Diameter & 270 mm & Stack Length & 135 mm \\
 DC Bus Voltage (Per Module) & 270 Vdc & & \\
@@ -85,14 +85,14 @@ DC Bus Voltage (Per Module) & 270 Vdc & & \\
     \caption{Cross-sectional View of IMMD}
     \label{fig:as6phmmf}    
 \end{subfigure}
- \caption{8 kW IMMD System}
+ \caption{8.5 kW IMMD System}
+ \label{fig:8kw}
 \end{figure}
 
 
 \section{\normalsize\textbf{Three, Four and Six-Phase Winding Configurations}}
 In a single phase fault condition, a three-phase machine is unable to operate as the machine cannot produce rotating MMF. For that reason, three-phase machines with a redundant phase leg or multiphase machines are more suitable for fault tolerant applications \cite{phaseleg}.
-In this section, different configuration possibilities are to be evaluated. As the stator slot number ($Q_s$) is 24, three, four and six phase topologies are suitable to compare.\\
-
+In this section, different configuration possibilities are to be evaluated. As the stator slot number ($Q_s$) is 24, three, four and six phase topologies are suitable to compare.\par
 Figure \ref{fig:winding} presents to possible winding diagrams for different phases. As a result of pole-slot number combination, primary winding factors of three and six-phase topologies ($k_{w(1)} = 0.934$) are far better compared to four-phase topology ($k_{w(1)} = 0.880$). Furthermore, as given in Figure \ref{fig:harmonics}, four-phase topology introduces high number of MMF space harmonics. Among all of them, asymmetric six phase nearly eliminates all sub-harmonics, but due to its winding configuration, one of the phase inductances is expected to be lower than the others.
 
 \begin{figure}[ht!]
@@ -132,35 +132,35 @@ As mentioned in the previous section, a three-phase machine is unable to operate
 
 \subsection{\normalsize\textbf{Open Circuit Failure (OCF) Responses and Recovery}}
 
-To examine the fault tolerance capability of the different configurations, winding open circuit fault responses and corresponding recovery techniques have been reviewed. The major advantage of multiphase machines under this condition is maintaining proper operation and producing same rotating MMF by manipulating current phasors of remaining phases. Although this can be achieved in several ways, the most convenient recovery option is the one where adjusted current values exceed rated current the least.\\
-
+To examine the fault tolerance capability of the different configurations, winding open circuit fault responses and corresponding recovery techniques have been reviewed. The major advantage of multiphase machines under this condition is maintaining proper operation and producing same rotating MMF by manipulating current phasors of remaining phases. Although this can be achieved in several ways, the most convenient recovery option is the one where adjusted current values exceed rated current the least.\par
 For symmetric six-phase topology, in the absence of phase A current of one module, magnitude adjusted current phasors that produce same rotating MMF increase by 1.297 of its rated value, where their phases have been shifted -35.04, -6, 0, 6 and 35.04 degrees with respect to their initial phases in counter clockwise direction, respectively \cite{recover} (Further details of these calculations and recovery techniques will be provided in full paper.). Simulation results obtained in MATLAB/Simulink for normal, faulted and recovered operation of symmetric six-phase topology is given in \ref{fig:ocfresponse}. In contrast to faulted operation, torque ripple decreased up to 2 Nm at steady state with modified phasors, as expected. Simulation results of other configurations will be presented in full paper.
 
 
 \begin{figure}[ht!]
 \begin{subfigure}[b]{0.33\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{mmf_harm_4ph.png}
+    \includegraphics[width=\linewidth]{ss_recover_current.png}
     \caption{Phase Currents}
     \label{fig:ocfcurrent}    
 \end{subfigure}
 \begin{subfigure}[b]{0.33\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{mmf_harm_sym.png}
-    \caption{Output Torque (Obtained in Simulink)}
-    \label{fig:s6phmmf}    
+    \includegraphics[width=\linewidth]{ss_recover_torque.png}
+    \caption{Torque Ripple (with Simulink)}
+    \label{fig:ocftorque}    
 \end{subfigure}
 \begin{subfigure}[b]{0.33\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{mmf_harm_asym.png}
-    \caption{Output Torque (Obtained with FEA)}
-    \label{fig:as6phmmf}    
+    \includegraphics[width=\linewidth]{ss_recover_torque_fea.png}
+    \caption{Torque Ripple (with FEA)}
+    \label{fig:ocftorquefea}   
 \end{subfigure}
- \caption{OCF Simulation Results of Symmetric Six-Phase Machine}
+ \caption{OCF Recovered Steady State Operation of Symmetric Six-Phase Machine}
+ \label{fig:ocfresponse}
 \end{figure}
 
 \section{\normalsize\textbf{Conclusions and Future Work}}
-Redundancy yüzdesi, normal operation, one phase open fault durumunda olacaklar, ilk IMMD topolojisiyle kıyaslanması, fault durumunda akımların, torque ripple ve average torque'un değişimi belirtilip karşılaştırılacak. Tablolanabilir. Akım vs gibi şeylerin simülasyonu genel olarak Simulink üzerinden yürüyecek. Tork için FEA karşılaştırması da eklenecek. Fault durumunda düzgün operate ettirmek için faz açısı kaydırma mevzularına girilecek. Genel olarak karşılaştırma bu değşik modül ve faz sayılı topolojilerin redundancy karşılaştırması üzerinden yürüyecek. 
+This paper compared assets and disadvantages of three, four and six phase configurations of the machine of an IMMD by means of fault tolerance. These have been summarized briefly in Table \ref{compare}. In full paper, simulation results for all configurations, further comparison criterion and analytical verification of fault recovery method are to be added and explained in detail.
 
 \begin{table*}[ht!]
  \caption{Comparison of Different Topologies}
@@ -169,7 +169,7 @@ Redundancy yüzdesi, normal operation, one phase open fault durumunda olacaklar,
 \toprule
 Advantages      & Three-Phase  & Four-Phase & Symmetric Six-Phase & Asymmetric Six-Phase \\ 
 \midrule
-Redundancy Factor    & lol    & lol    & lol   & lol \\ 
+Redundancy Factor    & low    & medium    & high   & high \\ 
 Overcurrent in OCF   & medium    & high  & low    & low \\ 
 Inductance Balance  &  high &   high &    high &  low\\
 MMF Harmonics  & medium    & high  & medium  & low  \\ 
@@ -178,6 +178,7 @@ Interleaving Opportunity  & evet  & şöyle   & şarkımızı   & söyleyelim  \
 
 \bottomrule
 \end{tabularx}
+\label{compare}
 \end{table*}
 
 \AtNextBibliography{\tiny}
