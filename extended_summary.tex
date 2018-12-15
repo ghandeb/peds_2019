@@ -42,11 +42,10 @@
 \textit{In this study, fault tolerance and redundancy capabilities of different phase and winding configurations of an Integrated Modular Motor Drive (IMMD) system is investigated. This is possible by manipulating gate drive signals of the inverter and end winding connections, without making any changes on the stator side of the electric machine. Three, four, symmetric and asymmetric six-phase topologies are described. Control strategies and redundancy possibilities of these different topologies under an open circuit fault condition are examined in MATLAB/Simulink environment and validated with Finite Element Analysis (FEA) software ANSYS/Maxwell. }
 
 \section{\normalsize\textbf{Introduction}}
-Integrated Modular Motor Drive (IMMD) is the concept of integrating power electronics, electric motor and other passive components of a drive to obtain a more compact system with higher power density compared to conventional motor drives \cite{immd-bible}. With the developments in safety-critical industrial applications, where IMMD concept would be quite related concerning efficiency and compactness, fault tolerance, reliability and redundancy of electric motor drive systems have become more important. This study examines assets and disadvantages of different phase configurations of the machine of an IMMD system, by means of redundancy and fault tolerance. 
+Integrated Modular Motor Drive (IMMD) is the concept of integrating power electronics, electric motor and other passive components of a drive to obtain a more compact system with higher power density compared to conventional motor drives \cite{immd-bible}. With the developments in safety-critical industrial applications, where IMMD concept would be quite related concerning efficiency and compactness, fault tolerance, reliability and redundancy of electric motor drive systems have become more important. This study examines assets and drawbacks of different phase configurations of the machine of an IMMD system, by means of redundancy and fault tolerance. 
 
 \section{\normalsize\textbf{Design Specifications of IMMD System}}
-There are several types for this integration \cite{difftopology1}\cite{difftopology2}. In this study, power converter and control circuits are placed on the stator back iron \cite{mesutto}. \par
-For the machine topology, fractional slot concentrated winding (FSCW) permanent magnet synchronous motor (PMSM) is more suitable due to high power density and high efficiency advantages. Furthermore, complete (electric and physical) isolation of phases and achieving higher number of phases in FSCW increases the fault tolerance capability of the machine \cite{fscw}. Besides, aforementioned integration configuration of drive unit onto the FSCW machine provides modularity for both machine and driver side, which brings redundant operation opportunity. In Figure \ref{fig:8kw}, one module of the driver, stator laminations and designed final product are presented. Main design specifications of the machine is given in Table \ref{specs}.
+For the machine topology, fractional slot concentrated winding (FSCW) permanent magnet synchronous motor (PMSM) is more suitable due to high power density and high efficiency advantages. Furthermore, complete (electric and physical) isolation of phases and achieving higher number of phases in FSCW increases the fault tolerance capability of the machine \cite{fscw}. Besides, integration of drive unit onto the FSCW machine \cite{mesutto} provides modularity for both machine and driver side, which brings redundant operation opportunity. In Figure \ref{fig:8kw}, one module of the driver, stator laminations and designed final product are presented. Main design specifications of the machine is given in Table \ref{specs}.
 
 \begin{table*}[ht!]
 \centering
@@ -91,15 +90,38 @@ DC Bus Voltage (Per Module) & 270 Vdc & & \\
 
 
 \section{\normalsize\textbf{Three, Four and Six-Phase Winding Configurations}}
-In a single phase fault condition, a three-phase machine is unable to operate as the machine cannot produce rotating MMF. For that reason, three-phase machines with a redundant phase leg or multiphase machines are more suitable for fault tolerant applications \cite{phaseleg}.
+In a single phase fault condition, a star-connected three-phase machine is unable to operate as the machine cannot produce rotating MMF. For that reason, three-phase machines with a redundant phase leg or multiphase machines are more suitable for fault tolerant applications \cite{phaseleg}.
 In this section, different configuration possibilities are to be evaluated. As the stator slot number ($Q_s$) is 24, three, four and six phase topologies are suitable to compare.\par
-Figure \ref{fig:winding} presents to possible winding diagrams for different phases. As a result of pole-slot number combination, primary winding factors of three and six-phase topologies ($k_{w(1)} = 0.934$) are far better compared to four-phase topology ($k_{w(1)} = 0.880$). Furthermore, as given in Figure \ref{fig:harmonics}, four-phase topology introduces high number of MMF space harmonics. Among all of them, asymmetric six phase nearly eliminates all sub-harmonics, but due to its winding configuration, one of the phase inductances is expected to be lower than the others.
+Figure \ref{fig:windings} presents possible winding diagrams for different phase numbers. As a result of pole-slot number combination, primary winding factors of three and six-phase topologies ($k_{w(1)} = 0.934$) are far better compared to four-phase topology ($k_{w(1)} = 0.880$). Furthermore, as given in Figure \ref{fig:harmonics}, four-phase topology introduces high number of MMF space harmonics. Among all of them, asymmetric six phase nearly eliminates all sub-harmonics, but due to its winding configuration, one of the phase inductances is expected to be lower than the others.
+
 
 \begin{figure}[ht!]
+\begin{subfigure}[b]{0.24\textwidth}
     \centering
-    \includegraphics{windings.png}
-    \caption{Winding Diagrams: (a) Three-Phase Four Modules (b) Four-Phase Two Modules (c) Symmetric Six-Phase Two Modules (d) Asymmetric Six-Phase Two Modules  }
-    \label{fig:winding}
+    \includegraphics[width=\linewidth]{3ph.png}
+    \caption{Three-Phase}
+    \label{fig:3ph}    
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{4ph.png}
+    \caption{Four-Phase}
+    \label{fig:4ph}    
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{sym6ph.png}
+    \caption{Symmetric Six-Phase}
+    \label{fig:s6ph}    
+\end{subfigure}
+\begin{subfigure}[b]{0.24\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{asym6ph.png}
+    \caption{Asymmetric Six-Phase}
+    \label{fig:as6ph}    
+\end{subfigure}
+ \caption{Winding Configurations}
+ \label{fig:windings}
 \end{figure}
 
 \begin{figure}[ht!]
@@ -128,18 +150,19 @@ Figure \ref{fig:winding} presents to possible winding diagrams for different pha
 
 \section{\normalsize\textbf{Comparison of Different Topologies}}
 \subsection{\normalsize\textbf{Redundancy}}
-As mentioned in the previous section, a three-phase machine is unable to operate properly under an OCF condition, as two phases cannot produce a rotating MMF. Yet, multiphase machines and machines with redundant phase legs may still maintain proper operation with certain manipulations. Accordingly, for the three-phase four module topology, OC failure of a single phase results in turning off one module completely. In this case, output power is decreased by 25\%. Although symmetric six-phase topology has the same magnetic equivalent circuit with three-phase four module, neutral node connection between two modules in this topology provides multiphase operation opportunity and as a result, completely turning off one module is not necessary. Similar advantages are also applicable for four-phase and asymmetric six-phase cases. On the other hand, decreasing the module number by half brings out other drawbacks. In a controller fault situation, which affects one module of the driver, decreases the motor output power to half, where it only decreases a quarter in initially proposed three-phase four module IMMD structure.
+As mentioned in the previous section, a three-phase machine is unable to operate properly under an open circuit failure (OCF) condition, as two phases cannot produce a rotating MMF. Accordingly, for the three-phase four module topology, OCF of a single phase results in turning off one module completely. In this case, output power is decreased by 25\%. Although symmetric six-phase topology has the same magnetic equivalent circuit with three-phase four module, neutral node connection between two modules in this topology provides multiphase operation opportunity and as a result, completely turning off one module is not necessary. Similar advantages are also applicable for four-phase and asymmetric six-phase cases. \par
+On the other hand, decreasing the module number by half brings out other drawbacks. In a controller fault situation, which affects one module of the driver, decreases the motor output power to half, where it only decreases a quarter in initially proposed three-phase four module IMMD structure.
 
 \subsection{\normalsize\textbf{Open Circuit Failure (OCF) Responses and Recovery}}
 
-To examine the fault tolerance capability of the different configurations, winding open circuit fault responses and corresponding recovery techniques have been reviewed. The major advantage of multiphase machines under this condition is maintaining proper operation and producing same rotating MMF by manipulating current phasors of remaining phases. Although this can be achieved in several ways, the most convenient recovery option is the one where adjusted current values exceed rated current the least.\par
-For symmetric six-phase topology, in the absence of phase A current of one module, magnitude adjusted current phasors that produce same rotating MMF increase by 1.297 of its rated value, where their phases have been shifted -35.04, -6, 0, 6 and 35.04 degrees with respect to their initial phases in counter clockwise direction, respectively \cite{recover} (Further details of these calculations and recovery techniques will be provided in full paper.). Simulation results obtained in MATLAB/Simulink for normal, faulted and recovered operation of symmetric six-phase topology is given in \ref{fig:ocfresponse}. In contrast to faulted operation, torque ripple decreased up to 2 Nm at steady state with modified phasors, as expected. Simulation results of other configurations will be presented in full paper.
+To examine the fault tolerance capability of the different configurations, winding OCF responses and corresponding recovery techniques have been reviewed. The major advantage of multiphase machines under this condition is maintaining proper operation and producing same rotating MMF by manipulating current phasors of remaining phases. Although this can be achieved in several ways, the most convenient recovery option is the one where adjusted current values exceed rated current the least.\par
+For symmetric six-phase topology, in the absence of phase A current of one module, magnitude of current phasors have been increased by 30\% of its rated value in order to produce same rotating MMF, where their phases have been shifted -35.04, -6, 0, 6 and 35.04 degrees with respect to their initial phases in counter clockwise direction, respectively \cite{recover} (Further details of these calculations and recovery techniques will be provided in full paper.). Simulation results obtained in MATLAB/Simulink for normal, faulted and recovered operation of symmetric six-phase topology is given in \ref{fig:ocfresponse}. In contrast to faulted operation, torque ripple at steady state decreased with modified phasors, as expected. Simulation results of other configurations will be presented in full paper.
 
 
 \begin{figure}[ht!]
 \begin{subfigure}[b]{0.33\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{ss_recover_current.png}
+    \includegraphics[width=\linewidth]{c1.png}
     \caption{Phase Currents}
     \label{fig:ocfcurrent}    
 \end{subfigure}
@@ -151,11 +174,11 @@ For symmetric six-phase topology, in the absence of phase A current of one modul
 \end{subfigure}
 \begin{subfigure}[b]{0.33\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{ss_recover_torque_fea.png}
+    \includegraphics[width=\linewidth]{ss_recover_torque_fea2.png}
     \caption{Torque Ripple (with FEA)}
     \label{fig:ocftorquefea}   
 \end{subfigure}
- \caption{OCF Recovered Steady State Operation of Symmetric Six-Phase Machine}
+ \caption{Normal and OCF Recovered Steady State Operation of Symmetric Six-Phase Machine}
  \label{fig:ocfresponse}
 \end{figure}
 
@@ -173,7 +196,6 @@ Redundancy Factor    & low    & medium    & high   & high \\
 Overcurrent in OCF   & medium    & high  & low    & low \\ 
 Inductance Balance  &  high &   high &    high &  low\\
 MMF Harmonics  & medium    & high  & medium  & low  \\ 
-Interleaving Opportunity  & evet  & şöyle   & şarkımızı   & söyleyelim  \\
 
 
 \bottomrule
